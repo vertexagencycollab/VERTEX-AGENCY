@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERTEX AGENCY | Criação de Sites Profissionais & Tráfego Pago</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-dark: #09090B;
+            --bg-card: #121215;
+            --bg-card-hover: #1A1A1E;
+            --border: #27272A;
+            --primary: #8B5CF6; 
+            --primary-light: #A78BFA;
+            --primary-blue: #2563EB; 
+            --whatsapp-green: #22C55E;
+            --text-main: #FFFFFF;
+            --text-muted: #A1A1AA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 75px;
+        }
+
+        @media (min-width: 769px) {
+            body { padding-bottom: 0; }
+        }
+
+        .glow-bg {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Ícone Oficial Instagram (SVG Gradient) */
+        .instagram-icon-official {
+            width: 20px;
+            height: 20px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover .instagram-icon-official {
+            transform: scale(1.15);
+        }
+
+        /* Header / Navbar Corrigido e Alinhado */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(9, 9, 11, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            height: 70px;
+        }
+
+        .logo-img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            cursor: pointer;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.4rem;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        nav a:hover, nav a.active-link {
+            color: var(--primary-light);
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-blue));
+            color: #fff;
+            padding: 0.65rem 1.3rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Estrutura SPA */
+        main {
+            margin-top: 70px;
+            flex: 1;
+        }
+
+        .page-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 50px 1.2rem 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--primary-light);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #FFF 20%, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Quick Nav Cards */
+        .quick-nav-section {
+            max-width: 1200px;
+            margin: 1rem auto 3rem;
+            padding: 0 1.2rem;
+        }
+
+        .quick-nav-title {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--primary-light);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quick-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        @media (min-width: 768px) {
+            .quick-nav-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        .quick-nav-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quick-nav-card:active, .quick-nav-card:hover {
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+        }
+
+        .quick-nav-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
+
+        .quick-nav-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .quick-nav-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.2;
+        }
+
+        /* Container Padrão */
+        .section-padding {
+            padding: 40px 1.2rem 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Nichos / Segmentos de Negócios Interativos */
+        .nicho-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        @media (min-width: 600px) {
+            .nicho-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 992px) {
+            .nicho-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .nicho-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .nicho-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            background: var(--bg-card-hover);
+        }
+
+        .nicho-card.selected {
+            border-color: var(--primary-light);
+            background: linear-gradient(145deg, rgba(139, 92, 246, 0.15), var(--bg-card));
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+        }
+
+        .nicho-card.selected::after {
+            content: "✓ Selecionado";
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            background: rgba(139, 92, 246, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .nicho-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(139, 92, 246, 0.12);
+            color: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .nicho-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .nicho-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Destaque Serviços */
+        .featured-services {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-card.highlight {
+            border-color: rgba(139, 92, 246, 0.4);
+            background: linear-gradient(145deg, rgba(139, 92, 246, 0.08) 0%, var(--bg-card) 100%);
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .featured-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .featured-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list li {
+            font-size: 0.9rem;
+            color: #E4E4E7;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+
+        .feature-list li i {
+            color: var(--primary-light);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Planos & Preços */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 992px) {
+            .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.8rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, var(--bg-card) 100%);
+        }
+
+        .badge-popular {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+        }
+
+        .price-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .price-setup {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 0.6rem;
+        }
+
+        .price-monthly {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin: 1rem 0 1.5rem;
+            flex-grow: 1;
+        }
+
+        .price-card li {
+            margin-bottom: 0.6rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Montador de Plano Personalizado */
+        .custom-plan-builder {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), var(--bg-card));
+            border: 2px dashed var(--primary);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .builder-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .builder-title h3 {
+            font-size: 1.6rem;
+            color: var(--text-main);
+        }
+
+        .builder-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        @media (min-width: 768px) {
+            .builder-options { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .checkbox-card {
+            background: #18181B;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-card:hover {
+            border-color: var(--primary-light);
+        }
+
+        .checkbox-card.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: var(--border) !important;
+        }
+
+        .checkbox-card input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .checkbox-card input[type="checkbox"]:disabled {
+            cursor: not-allowed;
+        }
+
+        .checkbox-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checkbox-info span {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .checkbox-info small {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .builder-summary {
+            background: #09090B;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .total-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            margin: 0.4rem 0 1rem;
+        }
+
+        /* Serviços Avulsos */
+        .custom-services {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.8rem;
+        }
+
+        .custom-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .custom-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .custom-box {
+            background: #18181B;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .custom-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary-light);
+        }
+
+        .custom-box .price-tag {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0.4rem 0 0.8rem;
+            color: var(--text-main);
+        }
+
+        .custom-box p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Processo Passos */
+        .process-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .process-steps { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 992px) {
+            .process-steps { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+
+        .step-number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .step-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .step-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Sobre Nós Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.8rem;
+            border-radius: 18px;
+        }
+
+        .about-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-light);
+        }
+
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.2rem;
+        }
+
+        .value-tag {
+            background: #18181B;
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-main);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #18181B, #111115);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem 1.2rem;
+            text-align: center;
+            margin: 20px auto 40px;
+            max-width: 1200px;
+        }
+
+        .cta-banner h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Sticky WhatsApp Bar (Mobile Only) */
+        .mobile-sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(9, 9, 11, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (min-width: 769px) {
+            .mobile-sticky-bar { display: none; }
+        }
+
+        .btn-whatsapp-sticky {
+            background: var(--whatsapp-green);
+            color: #fff;
+            width: 100%;
+            max-width: 400px;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 1.2rem 2rem;
+            background: #050507;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid { grid-template-columns: repeat(3, 1fr); }
+            .about-grid { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 3.2rem; }
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsividade Menu Header Corrigida */
+        @media (max-width: 900px) {
+            .mobile-toggle { display: block; }
+            .nav-cta-desktop { display: none; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-dark);
+                padding: 1.5rem 1.2rem;
+                border-bottom: 1px solid var(--border);
+                gap: 1.2rem;
+                text-align: left;
+                align-items: flex-start;
+            }
+            nav ul.active { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <header>
+        <div class="nav-container">
+            <img src="vertexagency.png" alt="Vertex Agency Logo" class="logo-img" onclick="navigateTo('home')">
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a onclick="navigateTo('home')" id="link-home" class="active-link">Início</a></li>
+                    <li><a onclick="navigateTo('nichos')" id="link-nichos">Seu Nicho</a></li>
+                    <li><a onclick="navigateTo('servicos')" id="link-servicos">O Que Fazemos</a></li>
+                    <li><a onclick="navigateTo('planos')" id="link-planos">Planos & Valores</a></li>
+                    <li><a onclick="navigateTo('servicos-avulsos')" id="link-servicos-avulsos">Opções Avulsas</a></li>
+                    <li><a onclick="navigateTo('processo')" id="link-processo">Como Funciona</a></li>
+                    <li><a onclick="navigateTo('sobre')" id="link-sobre">Quem Somos</a></li>
+                    <li>
+                        <a href="https://instagram.com/seuinstagram" target="_blank" class="social-link" title="Siga nosso Instagram">
+                            <svg class="instagram-icon-official" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <radialGradient id="rg" cx="20%" cy="100%" r="150%">
+                                    <stop offset="0%" stop-color="#fdf497" />
+                                    <stop offset="5%" stop-color="#fdf497" />
+                                    <stop offset="45%" stop-color="#fd5949" />
+                                    <stop offset="60%" stop-color="#d6249f" />
+                                    <stop offset="90%" stop-color="#285AEB" />
+                                </radialGradient>
+                                <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#rg)"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <a href="https://wa.me/5519989620949?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank" class="btn-cta nav-cta-desktop">
+                <i data-lucide="message-square"></i> Falar no WhatsApp
+            </a>
+
+            <button class="mobile-toggle" id="menuToggle" aria-label="Abrir Menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        
+        <!-- HOME PAGE -->
+        <div id="page-home" class="page-content active">
+            <section class="hero">
+                <div class="hero-badge">
+                    <i data-lucide="zap" size="14"></i> Estrutura digital feita para o seu negócio
+                </div>
+                <h1>Criação de Sites Profissionais & <span>Tráfego Pago</span></h1>
+                <p>Desenvolvemos sites modernos e colocamos o seu comércio, loja ou serviço no topo do Google e Instagram para atrair clientes prontos para comprar no seu WhatsApp.</p>
+                <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/5519989620949?text=Olá!%20Quero%20aumentar%20minhas%20vendas%20com%20Site%20e%20Tráfego." target="_blank" class="btn-cta" style="padding: 0.9rem 1.8rem; font-size: 1rem;">
+                        <i data-lucide="message-circle"></i> Solicitar Orçamento Grátis
+                    </a>
+                </div>
+            </section>
+
+            <!-- NAVEGAÇÃO RÁPIDA -->
+            <section class="quick-nav-section">
+                <div class="quick-nav-title">Navegação Rápida</div>
+                <div class="quick-nav-grid">
+                    <div class="quick-nav-card" onclick="navigateTo('nichos')">
+                        <div class="quick-nav-icon"><i data-lucide="store"></i></div>
+                        <h3>Seu Nicho</h3>
+                        <p>Soluções por comércio</p>
+                    </div>
+
+                    <div class="quick-nav-card" onclick="navigateTo('servicos')">
+                        <div class="quick-nav-icon"><i data-lucide="layout"></i></div>
+                        <h3>Criar Site</h3>
+                        <p>Visual moderno e rápido</p>
+                    </div>
+
+                    <div class="quick-nav-card" onclick="navigateTo('servicos')">
+                        <div class="quick-nav-icon"><i data-lucide="trending-up"></i></div>
+                        <h3>Tráfego Pago</h3>
+                        <p>Anúncios que vendem</p>
+                    </div>
+
+                    <div class="quick-nav-card" onclick="navigateTo('planos')">
+                        <div class="quick-nav-icon"><i data-lucide="package"></i></div>
+                        <h3>Planos</h3>
+                        <p>Pacotes ou monte o seu</p>
+                    </div>
+
+                    <div class="quick-nav-card" onclick="navigateTo('servicos-avulsos')">
+                        <div class="quick-nav-icon"><i data-lucide="shopping-bag"></i></div>
+                        <h3>Avulsos</h3>
+                        <p>Serviços sob demanda</p>
+                    </div>
+
+                    <div class="quick-nav-card" onclick="navigateTo('processo')">
+                        <div class="quick-nav-icon"><i data-lucide="check-circle-2"></i></div>
+                        <h3>Como Funciona</h3>
+                        <p>Passo a passo simples</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DESTAQUE DOS SERVIÇOS NA HOME -->
+            <section class="section-padding" style="padding-top: 0;">
+                <div class="featured-services">
+                    
+                    <div class="featured-card highlight">
+                        <span class="featured-badge">Mais Solicitado</span>
+                        <h3><i data-lucide="globe" style="color: var(--primary-light);"></i> Criação de Sites de Alta Conversão</h3>
+                        <p>Seu negócio precisa de uma vitrine profissional. Criamos sites perfeitos para celular, ultrarrápidos e prontos para transformar visitantes em compradores.</p>
+                        <ul class="feature-list">
+                            <li><i data-lucide="check"></i> <strong>Acesso Fácil pelo Celular:</strong> Carregamento em menos de 3 segundos.</li>
+                            <li><i data-lucide="check"></i> <strong>Botão de WhatsApp Fixo:</strong> O cliente clica e já fala direto com você.</li>
+                            <li><i data-lucide="check"></i> <strong>Painel Simples de Editar:</strong> Altere fotos e textos a qualquer momento sem complicação.</li>
+                            <li><i data-lucide="check"></i> <strong>Domínio & E-mail Próprio:</strong> Mais credibilidade para a sua marca.</li>
+                        </ul>
+                        <button onclick="navigateTo('servicos')" class="btn-cta" style="width: 100%; font-size: 0.9rem;">Ver detalhes sobre Sites</button>
+                    </div>
+
+                    <div class="featured-card">
+                        <span class="featured-badge" style="background: var(--primary-blue);">Foco em Resultados</span>
+                        <h3><i data-lucide="target" style="color: #60A5FA;"></i> Gestão de Tráfego Pago (Anúncios)</h3>
+                        <p>Colocamos a sua empresa em destaque no Google, Instagram e Facebook exatamente para as pessoas da sua região que querem comprar seu produto.</p>
+                        <ul class="feature-list">
+                            <li><i data-lucide="check"></i> <strong>Anúncios no Google:</strong> Apareça quando o cliente pesquisar pelo seu serviço.</li>
+                            <li><i data-lucide="check"></i> <strong>Anúncios no Instagram/Facebook:</strong> Alcance milhares de pessoas locais diariamente.</li>
+                            <li><i data-lucide="check"></i> <strong>Configuração de Pixels:</strong> Medimos exatamente quantas mensagens você recebeu.</li>
+                            <li><i data-lucide="check"></i> <strong>Sem Desperdício de Dinheiro:</strong> Seu investimento focado apenas no público certo.</li>
+                        </ul>
+                        <button onclick="navigateTo('servicos')" class="btn-cta" style="background: transparent; border: 1px solid var(--border); width: 100%; font-size: 0.9rem;">Ver detalhes sobre Tráfego</button>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- SEÇÃO NICHOS E EXEMPLOS DE COMÉRCIO INTERATIVO -->
+        <div id="page-nichos" class="page-content">
+            <section class="section-padding">
+                <div class="section-title">
+                    <h2>Soluções para o Seu Tipo de Negócio</h2>
+                    <p>Clique sobre o seu segmento para selecionar e solicitar um projeto personalizado:</p>
+                </div>
+
+                <div class="nicho-grid" id="nichoGrid">
+                    <div class="nicho-card" data-nicho="Barbearias & Salões" onclick="selectNicho(this)">
+                        <div class="nicho-icon"><i data-lucide="scissors"></i></div>
+                        <h3>Barbearias & Salões</h3>
+                        <p>Site com agendamento online rápido + anúncios no Instagram para clientes da sua cidade agendarem horários na sua cadeira.</p>
+                    </div>
+
+                    <div class="nicho-card" data-nicho="Manicures & Estética" onclick="selectNicho(this)">
+                        <div class="nicho-icon"><i data-lucide="sparkles"></i></div>
+                        <h3>Manicures & Estética</h3>
+                        <p>Vitrine digital para exibir seus trabalhos, tabela de preços e anúncios locais direcionados para o público feminino da sua região.</p>
+                    </div>
+
+                    <div class="nicho-card" data-nicho="Lojas de Roupas & Moda" onclick="selectNicho(this)">
+                        <div class="nicho-icon"><i data-lucide="shirt"></i></div>
+                        <h3>Lojas de Roupas & Moda</h3>
+                        <p>Catálogo online interativo onde o cliente escolhe as peças e finaliza o pedido direto no seu WhatsApp.</p>
+                    </div>
+
+                    <div class="nicho-card" data-nicho="Adegas & Bebidas" onclick="selectNicho(this)">
+                        <div class="nicho-icon"><i data-lucide="wine"></i></div>
+                        <h3>Adegas & Bebidas</h3>
+                        <p>Cardápio digital rápido com promoções da semana e tráfego pago nos finais de semana para impulsionar entregas e retiradas.</p>
+                    </div>
+
+                    <div class="nicho-card" data-nicho="Restaurantes & Lanchonetes" onclick="selectNicho(this)">
+                        <div class="nicho-icon"><i data-lucide="utensils"></i></div>
+                        <h3>Restaurantes & Lanchonetes</h3>
+                        <p>Cardápio online sem comissões de aplicativos + anúncios nos horários de pico (almoço/janta) direto para o delivery.</p>
+                    </div>
+
+                    <div class="nicho-card" data-nicho="Imobiliárias & Corretores" onclick="selectNicho(this)">
+                        <div class="nicho-icon"><i data-lucide="building-2"></i></div>
+                        <h3>Imobiliárias & Corretores</h3>
+                        <p>Páginas de imóveis com fotos em alta definição e campanhas no Google Ads para captar compradores e inquilinos qualificados.</p>
+                    </div>
+
+                    <div class="nicho-card" data-nicho="Clínicas & Consultórios" onclick="selectNicho(this)">
+                        <div class="nicho-icon"><i data-lucide="stetho-scope"></i></div>
+                        <h3>Clínicas & Consultórios</h3>
+                        <p>Sites elegantes transmitindo autoridade e anúncios de pesquisa no Google para atrair novos pacientes agendando consultas.</p>
+                    </div>
+
+                    <div class="nicho-card" data-nicho="Prestadores de Serviços Locais" onclick="selectNicho(this)">
+                        <div class="nicho-icon"><i data-lucide="wrench"></i></div>
+                        <h3>Prestadores de Serviços Locais</h3>
+                        <p>Oficinas, eletricistas, pintores, marcenarias e chaveiros: apareça no topo do Google quando o cliente precisar com urgência.</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2.5rem; background: var(--bg-card); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border);">
+                    <h4 id="nicho-selected-title" style="margin-bottom: 0.5rem;">Nenhum nicho selecionado</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 1.2rem; font-size: 0.9rem;" id="nicho-selected-desc">Clique em um dos quadros acima para selecionar seu segmento de negócio.</p>
+                    <a id="btn-nicho-whatsapp" href="https://wa.me/5519989620949?text=Olá!%20Quero%20saber%20como%20funciona%20para%20o%20meu%20negócio." target="_blank" class="btn-cta">
+                        <i data-lucide="message-square"></i> Solicitar para o Meu Negócio
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- SERVIÇOS DETALHADOS -->
+        <div id="page-servicos" class="page-content">
+            <section class="section-padding">
+                <div class="section-title">
+                    <h2>Nossos Serviços Detalhados</h2>
+                    <p>Entenda como ajudamos sua empresa a se destacar e vender mais na internet.</p>
+                </div>
+
+                <div class="featured-services">
+                    <!-- Detalhe Site -->
+                    <div class="featured-card">
+                        <h3><i data-lucide="monitor" style="color: var(--primary-light);"></i> 1. Criação de Sites Profissionais</h3>
+                        <p>Criamos um site sob medida para a sua empresa. O cliente acessa, entende o seu diferencial imediatamente e entra em contato no WhatsApp.</p>
+                        <ul class="feature-list">
+                            <li><i data-lucide="check"></i> <strong>Design Mobile-First:</strong> Pensado 100% para quem navega no celular.</li>
+                            <li><i data-lucide="check"></i> <strong>Opção com Painel ADM:</strong> Você mesmo atualiza conteúdos sem pagar nada a mais por isso.</li>
+                            <li><i data-lucide="check"></i> <strong>Landing Pages de Alta Conversão:</strong> Páginas focadas em uma única ação: vender.</li>
+                            <li><i data-lucide="check"></i> <strong>Integração Completa:</strong> Conectado ao WhatsApp, Instagram e Google Maps.</li>
+                        </ul>
+                        <a href="https://wa.me/5519989620949?text=Olá!%20Quero%20saber%20mais%20sobre%20a%20criação%20de%20sites." target="_blank" class="btn-cta" style="width: 100%; text-align: center;">Quero um Site Profissional</a>
+                    </div>
+
+                    <!-- Detalhe Tráfego -->
+                    <div class="featured-card">
+                        <h3><i data-lucide="trending-up" style="color: var(--primary-light);"></i> 2. Tráfego Pago & Anúncios Online</h3>
+                        <p>Tráfego pago é a forma mais rápida de receber contatos no seu WhatsApp. Mostramos sua empresa para pessoas propensas a comprar.</p>
+                        <ul class="feature-list">
+                            <li><i data-lucide="check"></i> <strong>Google Ads:</strong> Capte quem já está procurando seu serviço agora.</li>
+                            <li><i data-lucide="check"></i> <strong>Meta Ads (Instagram/Facebook):</strong> Desperte o interesse do seu público-alvo com vídeos e fotos.</li>
+                            <li><i data-lucide="check"></i> <strong>Otimização Semanal:</strong> Acompanhamos os anúncios para garantir o menor custo por lead.</li>
+                            <li><i data-lucide="check"></i> <strong>Relatórios Simples:</strong> Você sabe exatamente quantas mensagens e vendas os anúncios geraram.</li>
+                        </ul>
+                        <a href="https://wa.me/5519989620949?text=Olá!%20Quero%20saber%20mais%20sobre%20Tráfego%20Pago." target="_blank" class="btn-cta" style="width: 100%; text-align: center;">Quero Anunciar Meu Negócio</a>
+                    </div>
+
+                    <!-- Detalhe Rastreamento -->
+                    <div class="featured-card">
+                        <h3><i data-lucide="code-2" style="color: var(--primary-light);"></i> 3. Pixels e Rastreamento de Vendas</h3>
+                        <p>Instalamos ferramentas no seu site (Meta Pixel, Google Analytics 4, Tag Manager) para que o sistema das redes sociais aprenda quem são seus melhores clientes.</p>
+                        <ul class="feature-list">
+                            <li><i data-lucide="check"></i> <strong>Rastreamento de Cliques no WhatsApp:</strong> Descubra de qual anúncio veio o cliente.</li>
+                            <li><i data-lucide="check"></i> <strong>Proteção de Dados:</strong> Métodos modernos para não perder informações de acesso.</li>
+                            <li><i data-lucide="check"></i> <strong>Inteligência de Anúncios:</strong> Faça com que as plataformas busquem pessoas parecidas com seus clientes atuais.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PLANOS PAGE + MONTADOR PERSONALIZADO -->
+        <div id="page-planos" class="page-content">
+            <section class="section-padding">
+                <div class="section-title">
+                    <h2>Planos e Investimento</h2>
+                    <p>Escolha um dos nossos pacotes prontos ou monte seu plano sob medida abaixo!</p>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>Plano Start</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Ideal para quem deseja iniciar no digital com baixo investimento.</p>
+                        <div class="price-setup">Site: R$ 700</div>
+                        <div class="price-monthly">+ R$ 150 / mês (Manutenção)</div>
+                        <ul>
+                            <li><i data-lucide="check"></i> Site Profissional para Celulares</li>
+                            <li><i data-lucide="check"></i> Instalação Essencial de Pixels</li>
+                            <li><i data-lucide="check"></i> Anúncios no Meta ou Google</li>
+                            <li><i data-lucide="check"></i> Conexão Direta ao WhatsApp</li>
+                        </ul>
+                        <a href="https://wa.me/5519989620949?text=Olá!%20Gostaria%20de%20contratar%20o%20Plano%20Start." target="_blank" class="btn-cta" style="background: transparent; border: 1px solid var(--border); width: 100%;">Escolher Plano Start</a>
+                    </div>
+
+                    <div class="price-card featured">
+                        <div class="badge-popular">RECOMENDADO</div>
+                        <h3>Plano Growth</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Para empresas que buscam atração diária de novos clientes.</p>
+                        <div class="price-setup">Site: R$ 800</div>
+                        <div class="price-monthly">+ R$ 300 / mês (Tráfego + Manutenção)</div>
+                        <ul>
+                            <li><i data-lucide="check"></i> Site Estruturado para Alta Conversão</li>
+                            <li><i data-lucide="check"></i> Rastreamento Avançado (Pixel/API)</li>
+                            <li><i data-lucide="check"></i> Gestão Ativa de Tráfego Pago</li>
+                            <li><i data-lucide="check"></i> Relatório Mensal de Resultados</li>
+                        </ul>
+                        <a href="https://wa.me/5519989620949?text=Olá!%20Quero%20o%20Plano%20Growth%20(Recomendado)." target="_blank" class="btn-cta" style="width: 100%;">Escolher Plano Growth</a>
+                    </div>
+
+                    <div class="price-card">
+                        <h3>Plano Gold</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Estrutura digital completa com total controle sobre o seu site.</p>
+                        <div class="price-setup">Site: R$ 1.200</div>
+                        <div class="price-monthly">+ R$ 500 / mês (Gestão Completa)</div>
+                        <ul>
+                            <li><i data-lucide="check"></i> Site + Painel Administrativo Exclusivo</li>
+                            <li><i data-lucide="check"></i> API de Conversão & Tag Manager</li>
+                            <li><i data-lucide="check"></i> Anúncios no Google + Instagram</li>
+                            <li><i data-lucide="check"></i> Atendimento e Suporte VIP</li>
+                        </ul>
+                        <a href="https://wa.me/5519989620949?text=Olá!%20Tenho%20interesse%20no%20Plano%20Gold." target="_blank" class="btn-cta" style="background: transparent; border: 1px solid var(--border); width: 100%;">Escolher Plano Gold</a>
+                    </div>
+                </div>
+
+                <!-- MONTADOR DE PLANO PERSONALIZADO -->
+                <div class="custom-plan-builder">
+                    <div class="builder-title">
+                        <h3>⚙️ Monte Seu Plano Personalizado</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Marque apenas os itens que você realmente precisa para seu negócio:</p>
+                    </div>
+
+                    <div class="builder-options">
+                        <label class="checkbox-card">
+                            <input type="checkbox" id="item-site" value="700" data-name="Site Institucional / Landing Page" onchange="toggleSiteDependentItems(); calculateCustomPlan();">
+                            <div class="checkbox-info">
+                                <span>Criação do Site / Landing Page</span>
+                                <small>R$ 700 (Taxa Única)</small>
+                            </div>
+                        </label>
+
+                        <label class="checkbox-card disabled" id="card-pixel">
+                            <input type="checkbox" id="item-pixel" value="150" data-name="Instalação Avançada de Pixels & API" disabled onchange="calculateCustomPlan()">
+                            <div class="checkbox-info">
+                                <span>Pixels Avançados & API</span>
+                                <small id="pixel-help-text">+ R$ 150 (Requer opção de Site selecionada)</small>
+                            </div>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" id="item-panel" value="500" data-name="Painel Administrativo para Edição" onchange="calculateCustomPlan()">
+                            <div class="checkbox-info">
+                                <span>Painel Administrativo (ADM)</span>
+                                <small>+ R$ 500 (Para você mesmo editar o site)</small>
+                            </div>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" id="item-meta" value="300" data-monthly="true" data-name="Gestão de Tráfego Meta (Instagram/Facebook)" onchange="calculateCustomPlan()">
+                            <div class="checkbox-info">
+                                <span>Anúncios Instagram & Facebook</span>
+                                <small>+ R$ 300/mês (Gestão de Anúncios)</small>
+                            </div>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" id="item-google" value="300" data-monthly="true" data-name="Gestão de Tráfego Google Ads" onchange="calculateCustomPlan()">
+                            <div class="checkbox-info">
+                                <span>Anúncios Google Ads</span>
+                                <small>+ R$ 300/mês (Busca do Google)</small>
+                            </div>
+                        </label>
+
+                        <label class="checkbox-card">
+                            <input type="checkbox" id="item-suporte" value="100" data-monthly="true" data-name="Manutenção & Hospedagem Mensal" onchange="calculateCustomPlan()">
+                            <div class="checkbox-info">
+                                <span>Manutenção & Suporte Mensal</span>
+                                <small>+ R$ 100/mês (Segurança e Atualizações)</small>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="builder-summary">
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">Investimento Estimado:</span>
+                        <div class="total-price" id="custom-total-display">R$ 0,00</div>
+                        <a id="whatsapp-custom-btn" href="#" target="_blank" class="btn-cta" style="width: 100%; max-width: 350px;">
+                            <i data-lucide="message-circle"></i> Enviar Meu Plano Personalizado
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- OPÇÕES AVULSAS PAGE -->
+        <div id="page-servicos-avulsos" class="page-content">
+            <section class="section-padding">
+                <div class="custom-services">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <h3>Serviços Sob Demanda</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Precisa apenas de uma solução específica? Escolha abaixo:</p>
+                    </div>
+
+                    <div class="custom-grid">
+                        <div class="custom-box">
+                            <div>
+                                <h4>Apenas Site / Landing Page</h4>
+                                <div class="price-tag">A partir de R$ 700</div>
+                                <p>Criação de página rápida e elegante focada em conversão para o seu WhatsApp.</p>
+                            </div>
+                            <a href="https://wa.me/5519989620949?text=Olá!%20Quero%20orçar%20apenas%20o%20Site." target="_blank" class="btn-cta" style="background: transparent; border: 1px solid var(--border); width: 100%;">Solicitar Apenas Site</a>
+                        </div>
+
+                        <div class="custom-box">
+                            <div>
+                                <h4>Site com Painel de Controle</h4>
+                                <div class="price-tag">R$ 1.200</div>
+                                <p>Site completo com sistema para você alterar fotos, textos e produtos quando quiser.</p>
+                            </div>
+                            <a href="https://wa.me/5519989620949?text=Olá!%20Quero%20um%20Site%20com%20Painel%20ADM." target="_blank" class="btn-cta" style="background: transparent; border: 1px solid var(--border); width: 100%;">Site com Painel</a>
+                        </div>
+
+                        <div class="custom-box">
+                            <div>
+                                <h4>Gestão de Tráfego Pago</h4>
+                                <div class="price-tag">Sob Consulta</div>
+                                <p>Gestão contínua das suas campanhas de anúncios no Meta Ads e Google Ads.</p>
+                            </div>
+                            <a href="https://wa.me/5519989620949?text=Olá!%20Preciso%20apenas%20da%20Gestão%20de%20Tráfego." target="_blank" class="btn-cta" style="width: 100%;">Contratar Tráfego</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PROCESSO PAGE -->
+        <div id="page-processo" class="page-content">
+            <section class="section-padding">
+                <div class="section-title">
+                    <h2>Como Funciona na Prática?</h2>
+                    <p>Processo simples e sem complicação em apenas 4 etapas.</p>
+                </div>
+
+                <div class="process-steps">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h4>Alinhamento</h4>
+                        <p>Conversamos para entender o seu negócio, seus produtos e quem é o seu cliente ideal.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h4>Criação do Site</h4>
+                        <p>Desenvolvemos seu site rápido, bonito e preparado para conversão em celulares.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h4>Ativação dos Anúncios</h4>
+                        <p>Configuramos as ferramentas de rastreamento e colocamos suas campanhas de tráfego no ar.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">04</div>
+                        <h4>Vendas & Suporte</h4>
+                        <p>Os clientes chegam ao seu WhatsApp e nós otimizamos as campanhas semanalmente.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- QUEM SOMOS PAGE -->
+        <div id="page-sobre" class="page-content">
+            <section class="section-padding">
+                <div class="about-grid">
+                    <div>
+                        <img src="vertexlogo.png" alt="Vertex Logo Icon" style="width: 100%; max-width: 320px; border-radius: 16px; border: 1px solid var(--border); display: block; margin: 0 auto;">
+                    </div>
+                    <div class="about-card">
+                        <h3>Quem Somos</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 0.8rem;">
+                            Na <strong>VERTEX AGENCY</strong>, unimos <strong>desenvolvimento de sites modernos</strong> e <strong>gestão de tráfego pago</strong> para ajudar empresas a venderem diariamente pela internet.
+                        </p>
+                        <p style="color: var(--text-muted);">
+                            Entregamos uma estrutura completa: seu site rápido no ar, rastreamento de dados preciso e anúncios ativos trazendo mensagens direto no seu WhatsApp.
+                        </p>
+
+                        <div style="margin-top: 1.2rem;">
+                            <a href="https://instagram.com/seuinstagram" target="_blank" class="social-link" style="color: var(--primary-light); font-weight: 600; justify-content: flex-start; gap: 0.5rem;">
+                                <svg class="instagram-icon-official" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <radialGradient id="rg2" cx="20%" cy="100%" r="150%">
+                                        <stop offset="0%" stop-color="#fdf497" />
+                                        <stop offset="5%" stop-color="#fdf497" />
+                                        <stop offset="45%" stop-color="#fd5949" />
+                                        <stop offset="60%" stop-color="#d6249f" />
+                                        <stop offset="90%" stop-color="#285AEB" />
+                                    </radialGradient>
+                                    <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#rg2)"/>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Siga-nos no Instagram
+                            </a>
+                        </div>
+
+                        <h4 style="margin-top: 1.2rem; font-size: 1rem;">Nossos Compromissos</h4>
+                        <div class="values-list">
+                            <span class="value-tag">Linguagem Simples</span>
+                            <span class="value-tag">Sites Ultra-Rápidos</span>
+                            <span class="value-tag">Foco em Vendas</span>
+                            <span class="value-tag">Suporte no WhatsApp</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CTA FINAL -->
+        <div class="cta-banner">
+            <h2>Pronto para atrair mais clientes?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">Fale diretamente com nossa equipe no WhatsApp e receba uma análise do seu negócio.</p>
+            <a href="https://wa.me/5519989620949?text=Olá!%20Quero%20uma%20análise%20gratuita%20para%20o%20meu%20negócio." target="_blank" class="btn-cta" style="padding: 0.9rem 2rem; font-size: 1rem;">
+                <i data-lucide="message-square"></i> Falar com um Especialista
+            </a>
+        </div>
+
+    </main>
+
+    <!-- BARRA FIXA DE CONVERSÃO EXCLUSIVA PARA CELULAR -->
+    <div class="mobile-sticky-bar">
+        <a href="https://wa.me/5519989620949?text=Olá!%20Vim%20pelo%20site%20no%20celular%20e%20gostaria%20de%20um%20orçamento." target="_blank" class="btn-whatsapp-sticky">
+            <i data-lucide="message-circle" size="20"></i> Falar no WhatsApp Agora
+        </a>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="vertexagency.png" alt="Vertex Agency Logo" class="logo-img" style="margin-bottom: 0.8rem;" onclick="navigateTo('home')">
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Criação de Sites Profissionais, Tráfego Pago e Rastreamento Avançado para Empresas.</p>
+                <div style="margin-top: 0.8rem;">
+                    <a href="https://instagram.com/seuinstagram" target="_blank" class="social-link" style="justify-content: flex-start; gap: 0.5rem;">
+                        <svg class="instagram-icon-official" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <radialGradient id="rg3" cx="20%" cy="100%" r="150%">
+                                <stop offset="0%" stop-color="#fdf497" />
+                                <stop offset="5%" stop-color="#fdf497" />
+                                <stop offset="45%" stop-color="#fd5949" />
+                                <stop offset="60%" stop-color="#d6249f" />
+                                <stop offset="90%" stop-color="#285AEB" />
+                            </radialGradient>
+                            <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#rg3)"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>Instagram Oficial</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 0.8rem;">Contato & Atendimento</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">WhatsApp: (19) 98962-0949</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Atendimento em todo o Brasil</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 0.8rem;">Especialidades</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Sites Responsivos • Google Ads • Instagram Ads • Painel ADM • Rastreamento de Leads</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 VERTEX AGENCY. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializa os ícones do Lucide
+        lucide.createIcons();
+
+        // Menu Mobile (Abrir / Fechar)
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Sistema de Navegação SPA
+        function navigateTo(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const links = document.querySelectorAll('nav a');
+            links.forEach(link => link.classList.remove('active-link'));
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const targetLink = document.getElementById(`link-${pageId}`);
+            if (targetLink) {
+                targetLink.classList.add('active-link');
+            }
+
+            navMenu.classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Seleção de Nicho Interativa
+        function selectNicho(cardElement) {
+            const allCards = document.querySelectorAll('.nicho-card');
+            allCards.forEach(c => c.classList.remove('selected'));
+            
+            cardElement.classList.add('selected');
+            const nichoName = cardElement.getAttribute('data-nicho');
+
+            const titleEl = document.getElementById('nicho-selected-title');
+            const descEl = document.getElementById('nicho-selected-desc');
+            const btnEl = document.getElementById('btn-nicho-whatsapp');
+
+            titleEl.innerText = `Nicho Selecionado: ${nichoName}`;
+            descEl.innerText = `Pronto! Clique abaixo para falar com um especialista sobre soluções para ${nichoName}.`;
+            
+            const message = `Olá! Tenho um negócio no ramo de *${nichoName}* e gostaria de solicitar um orçamento.`;
+            btnEl.href = `https://wa.me/5519989620949?text=${encodeURIComponent(message)}`;
+            btnEl.innerHTML = `<i data-lucide="message-square"></i> Solicitar Orçamento para ${nichoName}`;
+            lucide.createIcons();
+        }
+
+        // Bloqueio condicional de Pixels Avançados
+        function toggleSiteDependentItems() {
+            const siteCheckbox = document.getElementById('item-site');
+            const pixelCheckbox = document.getElementById('item-pixel');
+            const pixelCard = document.getElementById('card-pixel');
+            const helpText = document.getElementById('pixel-help-text');
+
+            if (siteCheckbox.checked) {
+                pixelCheckbox.disabled = false;
+                pixelCard.classList.remove('disabled');
+                helpText.innerText = "+ R$ 150 (Taxa Única de Configuração)";
+            } else {
+                pixelCheckbox.checked = false;
+                pixelCheckbox.disabled = true;
+                pixelCard.classList.add('disabled');
+                helpText.innerText = "+ R$ 150 (Requer opção de Site selecionada)";
+            }
+        }
+
+        // Calculadora do Montador de Plano Personalizado
+        function calculateCustomPlan() {
+            let singleCost = 0;
+            let monthlyCost = 0;
+            let selectedItems = [];
+
+            const checkboxes = document.querySelectorAll('.builder-options input[type="checkbox"]');
+            
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    const value = parseFloat(cb.value);
+                    const isMonthly = cb.getAttribute('data-monthly') === 'true';
+                    const itemName = cb.getAttribute('data-name');
+
+                    if (isMonthly) {
+                        monthlyCost += value;
+                    } else {
+                        singleCost += value;
+                    }
+                    selectedItems.push(itemName);
+                }
+            });
+
+            const display = document.getElementById('custom-total-display');
+            const whatsappBtn = document.getElementById('whatsapp-custom-btn');
+
+            if (selectedItems.length === 0) {
+                display.innerText = "R$ 0,00";
+                whatsappBtn.href = "https://wa.me/5519989620949?text=Olá!%20Gostaria%20de%20montar%20um%20plano%20personalizado.";
+                return;
+            }
+
+            let resultText = "";
+            if (singleCost > 0) resultText += `R$ ${singleCost} (Taxa Única) `;
+            if (monthlyCost > 0) {
+                if (singleCost > 0) resultText += "+ ";
+                resultText += `R$ ${monthlyCost}/mês`;
+            }
+
+            display.innerText = resultText;
+
+            // Formata a mensagem para o WhatsApp
+            const message = `Olá! Montei meu plano personalizado no site com os seguintes itens:\n- ${selectedItems.join('\n- ')}\n\n*Total Estimado:* ${resultText}`;
+            whatsappBtn.href = `https://wa.me/5519989620949?text=${encodeURIComponent(message)}`;
+        }
+
+        // Inicializa o estado dos campos e calculadora
+        toggleSiteDependentItems();
+        calculateCustomPlan();
+    </script>
+</body>
+</html>
